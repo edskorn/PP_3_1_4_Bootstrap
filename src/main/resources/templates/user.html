@@ -53,6 +53,10 @@
 </head>
 <body>
 <H1>Пользователи</H1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти" />
+</form>
+<br>
 <table>
     <tr>
         <th>ID</th>
@@ -72,5 +76,6 @@
 </table>
 <br>
 <input type="button" value="Добавить" onclick="window.location.href = 'addUser'">
+
 </body>
 </html>

@@ -60,7 +60,11 @@
     </style>
 </head>
 <body>
-<H1>Пользователь</H1>
+<H1 th:text="'Пользователь ' + ${user.getUsername()}">Пользователь</H1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти" />
+</form>
+<br>
 <table>
     <tr>
         <th>ID</th>
@@ -75,6 +79,5 @@
         <td th:text="${user.getAge()}"></td>
     </tr>
 </table>
-<br>
 </body>
 </html>

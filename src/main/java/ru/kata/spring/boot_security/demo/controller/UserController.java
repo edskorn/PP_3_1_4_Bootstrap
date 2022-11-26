@@ -26,7 +26,11 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/")
-	public String printWelcome(ModelMap model) {
+	public String printWelcome() {
+		return "index";
+	}
+	@GetMapping(value = "/admin")
+	public String showAll(ModelMap model) {
 		List<User> users = userService.getAllUsers();
 		model.addAttribute("allUsers", users);
 		return "user";
@@ -41,7 +45,7 @@ public class UserController {
 	@RequestMapping(value = "/saveUser")
 	public String saveUser(@ModelAttribute("user") User user){
 		userService.saveUser(user);
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 	@RequestMapping(value = "/updateUser")
@@ -53,7 +57,7 @@ public class UserController {
 	@RequestMapping(value = "/deleteUser")
 	public String deleteUser(@RequestParam("userId") int userId){
 		userService.removeUserById(userId);
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 	@RequestMapping(value = "/user")

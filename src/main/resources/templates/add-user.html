@@ -53,6 +53,9 @@
 </head>
 <body>
 <h1>Информация о пользователе</h1>
+<form th:action="@{/logout}" method="post">
+  <input type="submit" value="Выйти" />
+</form>
 <form action="saveUser" modelAttribute="user">
   <input type="hidden" name="id" th:value="${user.getId()}">
   <table>

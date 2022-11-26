@@ -35,17 +35,15 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public boolean saveUser(User user) {
+    public void saveUser(User user) {
         Optional<User> userFromDB = usersRepository.findByUsername(user.getUsername());
 
-        if (userFromDB.isPresent()) {
-            return false;
+        if (userFromDB.isEmpty()) {
+            user.setRoles(Collections.singleton(new Role(2L, "ROLE_USER")));
         }
 
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
-        return true;
     }
 
     @Transactional
