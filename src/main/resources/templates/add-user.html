@@ -68,6 +68,14 @@
       <td>Возраст</td>
       <td><input type="text" name="age" placeholder="Введите возраст" th:value="${user.getAge()}"></td>
     </tr>
+    <tr>
+      <td>Логин</td>
+      <td><input type="text" name="username" placeholder="Введите логин" th:value="${user.getUsername()}"></td>
+    </tr>
+    <tr>
+      <td>Пароль</td>
+      <td><input type="text" name="password" placeholder="Введите пароль" th:value="${user.getPassword()}"></td>
+    </tr>
   </table>
   <br>
   <input type="submit" value="Применить"/>
