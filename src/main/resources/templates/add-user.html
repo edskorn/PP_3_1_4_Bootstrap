@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление пользователя</title>
+  <style>
+    h1 {
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      color: #276291;
+    }
+    a {
+      color: white;
+    }
+    input[type="button"] {
+      cursor: auto;
+      text-align: center;
+      background: #276291;
+      color: white;
+      padding: 10px 20px;
+      border-width: 0;
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      font-size: 14px;
+    }
+    input[type="submit"] {
+      cursor: auto;
+      text-align: center;
+      background: #276291;
+      color: white;
+      padding: 10px 20px;
+      border-width: 0;
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      font-size: 14px;
+    }
+    table {
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      font-size: 14px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th:first-child, td:first-child {
+      text-align: left;
+      padding: 10px 20px;
+    }
+    th, td {
+      background: #4b89be;
+      color: white;
+      padding: 10px 50px;
+      border-style: solid;
+      border-width: 0 1px 1px 0;
+      border-color: white;
+    }
+  </style>
+</head>
+<body>
+<h1>Информация о пользователе</h1>
+<form action="saveUser" modelAttribute="user">
+  <input type="hidden" name="id" th:value="${user.getId()}">
+  <table>
+    <tr>
+      <td>Фамилия</td>
+      <td><input type="text" name="lastName" placeholder="Введите фамилию" th:value="${user.getLastName()}"></td>
+    </tr>
+    <tr>
+      <td>Имя</td>
+      <td><input type="text" name="name" placeholder="Введите имя" th:value="${user.getName()}"></td>
+    </tr>
+    <tr>
+      <td>Возраст</td>
+      <td><input type="text" name="age" placeholder="Введите возраст" th:value="${user.getAge()}"></td>
+    </tr>
+  </table>
+  <br>
+  <input type="submit" value="Применить"/>
+</form>
+</body>
+</html>
