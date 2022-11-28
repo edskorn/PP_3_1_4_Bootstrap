@@ -1,63 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Пользователи</title>
-    <style>
-        h1 {
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            color: #276291;
-        }
-
-        a {
-            color: white;
-        }
-
-        input[type="button"] {
-            cursor: auto;
-            text-align: center;
-            background: #276291;
-            color: white;
-            padding: 10px 20px;
-            border-width: 0;
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            font-size: 14px;
-        }
-
-        input[type="submit"] {
-            cursor: auto;
-            text-align: center;
-            background: #276291;
-            color: white;
-            padding: 10px 20px;
-            border-width: 0;
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            font-size: 14px;
-        }
-
-        table {
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            font-size: 14px;
-            border-collapse: collapse;
-            text-align: center;
-        }
-
-        th:first-child, td:first-child {
-            text-align: left;
-            padding: 10px 20px;
-        }
-
-        th, td {
-            background: #4b89be;
-            color: white;
-            padding: 10px 50px;
-            border-style: solid;
-            border-width: 0 1px 1px 0;
-            border-color: white;
-        }
-    </style>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
 <H1 th:text="'Пользователь ' + ${user.getUsername()}">Пользователь</H1>

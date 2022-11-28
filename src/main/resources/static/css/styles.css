@@ -1,0 +1,45 @@
+h1 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: #276291;
+}
+a {
+    color: white;
+}
+input[type="button"] {
+    cursor: auto;
+    text-align: center;
+    background: #276291;
+    color: white;
+    padding: 10px 20px;
+    border-width: 0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 14px;
+}
+input[type="submit"] {
+    cursor: auto;
+    text-align: center;
+    background: #276291;
+    color: white;
+    padding: 10px 20px;
+    border-width: 0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 14px;
+}
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th:first-child, td:first-child {
+    text-align: left;
+    padding: 10px 20px;
+}
+th, td {
+    background: #4b89be;
+    color: white;
+    padding: 10px 50px;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}

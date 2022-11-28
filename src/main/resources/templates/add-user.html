@@ -1,83 +1,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      lang="en">
+      lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Добавление пользователя</title>
-  <style>
-    h1 {
-      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-      color: #276291;
-    }
-    a {
-      color: white;
-    }
-    input[type="button"] {
-      cursor: auto;
-      text-align: center;
-      background: #276291;
-      color: white;
-      padding: 10px 20px;
-      border-width: 0;
-      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-      font-size: 14px;
-    }
-    input[type="submit"] {
-      cursor: auto;
-      text-align: center;
-      background: #276291;
-      color: white;
-      padding: 10px 20px;
-      border-width: 0;
-      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-      font-size: 14px;
-    }
-    table {
-      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-      font-size: 14px;
-      border-collapse: collapse;
-      text-align: center;
-    }
-    th:first-child, td:first-child {
-      text-align: left;
-      padding: 10px 20px;
-    }
-    th, td {
-      background: #4b89be;
-      color: white;
-      padding: 10px 50px;
-      border-style: solid;
-      border-width: 0 1px 1px 0;
-      border-color: white;
-    }
-  </style>
+  <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>Информация о пользователе</h1>
 <form th:action="@{/logout}" method="post">
   <input type="submit" value="Выйти" />
 </form>
-<form action="saveUser" modelAttribute="user">
+<form action="saveUser">
   <input type="hidden" name="id" th:value="${user.getId()}">
   <table>
     <tr>
-      <td>Фамилия</td>
-      <td><input type="text" name="lastName" placeholder="Введите фамилию" th:value="${user.getLastName()}"></td>
+      <td><label for="lastName">Фамилия</label></td>
+      <td><input type="text" id="lastName" name="lastName" placeholder="Введите фамилию" th:value="${user.getLastName()}"></td>
     </tr>
     <tr>
-      <td>Имя</td>
-      <td><input type="text" name="name" placeholder="Введите имя" th:value="${user.getName()}"></td>
+      <td><label for="name">Имя</label></td>
+      <td><input type="text" id="name" name="name" placeholder="Введите имя" th:value="${user.getName()}"></td>
     </tr>
     <tr>
-      <td>Возраст</td>
-      <td><input type="text" name="age" placeholder="Введите возраст" th:value="${user.getAge()}"></td>
+      <td><label for="age">Возраст</label></td>
+      <td><input type="text" id="age" name="age" placeholder="Введите возраст" th:value="${user.getAge()}"></td>
     </tr>
     <tr>
-      <td>Логин</td>
-      <td><input type="text" name="username" placeholder="Введите логин" th:value="${user.getUsername()}"></td>
+      <td><label for="username">Логин</label></td>
+      <td><input type="text" id="username" name="username" placeholder="Введите логин" th:value="${user.getUsername()}"></td>
     </tr>
     <tr>
-      <td>Пароль</td>
-      <td><input type="text" name="password" placeholder="Введите пароль" th:value="${user.getPassword()}"></td>
+      <td><label for="password">Пароль</label></td>
+      <td><input type="password" id="password" name="password" placeholder="Введите пароль"></td>
     </tr>
   </table>
   <br>
