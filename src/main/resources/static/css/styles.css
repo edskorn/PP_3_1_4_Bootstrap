@@ -43,3 +43,13 @@ th, td {
     border-width: 0 1px 1px 0;
     border-color: white;
 }
+
+td.error {
+    background: white;
+    color: darkred;
+    padding: 10px 10px;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    text-align: left;
+}

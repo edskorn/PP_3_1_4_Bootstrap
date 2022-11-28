@@ -2,37 +2,67 @@ package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.kata.spring.boot_security.demo.validation.UniqLogin;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users"
+//        , uniqueConstraints =
+//        {
+//                @UniqueConstraint(columnNames = "id"),
+//                @UniqueConstraint(columnNames = "login")
+//        }
+)
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty (message = "Имя должно быть не пустое")
+    @Size(min=2, max=100, message = "Не меньше 2 и не больше 100-ти знаков")
+    @Pattern(regexp = "[A-Za-zА-ЯЁа-яё]+", message = "Введено некорректное имя: ${validatedValue}")
     private String name;
 
     @Column(name = "last_name")
+    @NotEmpty(message = "Фамилия не может быть пустой")
+    @Size(min=2, max=100, message = "Не меньше 2 и не больше 100-ти знаков")
+    @Pattern(regexp = "[A-Za-zА-ЯЁа-яё]+", message = "Введена некорректная фамилия: ${validatedValue}")
     private String lastName;
 
     @Column(name = "age")
+    @NotNull(message = "Возраст должен быть заполнен")
+    @DecimalMax(message = "Введите корректный возраст",
+            value = "150")
+    @DecimalMin(message = "Введите корректный возраст",
+            value = "0", inclusive = false)
     private Byte age;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @Column(name = "login")
+    @NotEmpty(message = "Логин должен быть заполнен")
+    @Pattern(regexp = "[A-Za-z0-9_]+", message = "Логин может состоять из букв латинского алфавита, цифр и символа подчёркивания")
+    @Size(min=3, max=20, message = "Не меньше 3 и не больше 20-ти знаков")
+    //@UniqLogin(message = "Пользователь с таким логином уже зарегистрирован в системе")
     private String username;
 
+    @NotEmpty(message = "Пароль должен быть заполнен")
+    @Size(min=3, message = "Не меньше 3-х знаков")
     @Column(name = "password")
     private String password;
-
 
     public User() {
 
@@ -135,12 +165,12 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id.equals(user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(age, user.age);
+        return id.equals(user.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName, age);
+        return Objects.hash(id);
     }
 }
 

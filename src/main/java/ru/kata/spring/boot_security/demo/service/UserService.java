@@ -25,7 +25,6 @@ public class UserService implements UserDetailsService {
     private EntityManager entityManager;
     private final UsersRepository usersRepository;
     private final RolesRepository rolesRepository;
-
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
@@ -36,12 +35,9 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void saveUser(User user) {
-        Optional<User> userFromDB = usersRepository.findByUsername(user.getUsername());
-
-        if (userFromDB.isEmpty()) {
+        if (user.getRoles().isEmpty()) {
             user.setRoles(Collections.singleton(new Role(2L, "ROLE_USER")));
         }
-
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
     }
@@ -58,8 +54,17 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
+    public List<Role> getAllRoles() {
+        return rolesRepository.findAll();
+    }
+
+    @Transactional
     public User getUserById(long id) {
-        return usersRepository.findById(id).get();
+        Optional<User> user = usersRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException("Пользователь с таким id не найден");
+        }
+        return user.get();
     }
 
     @Override
@@ -70,4 +75,9 @@ public class UserService implements UserDetailsService {
         }
         return user.get();
     }
+
+    public Optional<User> getUserByUsername(String username) {
+        return usersRepository.findByUsername(username);
+    }
+
 }
