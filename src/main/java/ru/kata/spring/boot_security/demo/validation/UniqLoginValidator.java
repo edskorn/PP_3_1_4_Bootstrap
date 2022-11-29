@@ -1,7 +1,7 @@
 package ru.kata.spring.boot_security.demo.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 import ru.kata.spring.boot_security.demo.model.User;
 import java.util.Optional;
 
@@ -10,11 +10,11 @@ import javax.validation.ConstraintValidatorContext;
 
 public class UniqLoginValidator implements ConstraintValidator<UniqLogin, User> {
 
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setUserService(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class UniqLoginValidator implements ConstraintValidator<UniqLogin, User> 
     public boolean isValid(User user, ConstraintValidatorContext constraintValidatorContext) {
         boolean result=true;
         try {
-            Optional<User> userFromDB = userService.getUserByUsername(user.getUsername());
+            Optional<User> userFromDB = userServiceImpl.getUserByUsername(user.getUsername());
             if (userFromDB.isEmpty()) {
                 result = true;
             } else if (user.equals(userFromDB.get())) {
