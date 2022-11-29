@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.repositories.RolesRepository;
 import ru.kata.spring.boot_security.demo.repositories.UsersRepository;
+import ru.kata.spring.boot_security.demo.security.PersonDetails;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +26,7 @@ public class UserService implements UserDetailsService {
     private EntityManager entityManager;
     private final UsersRepository usersRepository;
     private final RolesRepository rolesRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public UserService(UsersRepository usersRepository, RolesRepository rolesRepository) {
@@ -73,7 +74,7 @@ public class UserService implements UserDetailsService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("Пользователь с таким именем не найден");
         }
-        return user.get();
+        return new PersonDetails(user.get());
     }
 
     @Transactional

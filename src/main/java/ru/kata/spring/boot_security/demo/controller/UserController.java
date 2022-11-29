@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.kata.spring.boot_security.demo.security.PersonDetails;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
@@ -78,7 +79,7 @@ public class UserController {
 	@RequestMapping(value = "/user")
 	public String showUserInfo(ModelMap model){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		User user = (User) authentication.getPrincipal();
+		User user = ((PersonDetails) authentication.getPrincipal()).getUser();
 		model.addAttribute("user", user);
 		return "user-info";
 	}

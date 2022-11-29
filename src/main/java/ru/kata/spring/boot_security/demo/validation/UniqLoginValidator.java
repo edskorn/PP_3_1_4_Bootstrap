@@ -3,7 +3,6 @@ package ru.kata.spring.boot_security.demo.validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.kata.spring.boot_security.demo.service.UserService;
 import ru.kata.spring.boot_security.demo.model.User;
-import java.lang.reflect.Field;
 import java.util.Optional;
 
 import javax.validation.ConstraintValidator;
