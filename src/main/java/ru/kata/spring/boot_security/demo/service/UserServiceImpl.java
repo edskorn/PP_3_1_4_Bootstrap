@@ -10,12 +10,10 @@ import ru.kata.spring.boot_security.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.repositories.RolesRepository;
-import ru.kata.spring.boot_security.demo.repositories.UsersRepository;
+import ru.kata.spring.boot_security.demo.repositories.RoleDao;
+import ru.kata.spring.boot_security.demo.repositories.UserDao;
 import ru.kata.spring.boot_security.demo.security.PersonDetails;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -23,14 +21,12 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-    private final UsersRepository usersRepository;
-    private final RolesRepository rolesRepository;
-    private PasswordEncoder bCryptPasswordEncoder;
+    private final UserDao usersRepository;
+    private final RoleDao rolesRepository;
+    private PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    public UserServiceImpl(UsersRepository usersRepository, RolesRepository rolesRepository) {
+    public UserServiceImpl(UserDao usersRepository, RoleDao rolesRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
     }
@@ -38,11 +34,6 @@ public class UserServiceImpl implements UserService {
     @Bean
     public PasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
-    }
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Transactional
@@ -61,8 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT u FROM User u ORDER BY u.lastName ASC", User.class)
-                .getResultList();
+        return usersRepository.getAllUsers();
     }
 
     @Transactional

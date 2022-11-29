@@ -4,9 +4,7 @@ import ru.kata.spring.boot_security.demo.validation.UniqLogin;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users", uniqueConstraints =
