@@ -76,6 +76,7 @@ public class UserService implements UserDetailsService {
         return user.get();
     }
 
+    @Transactional
     public Optional<User> getUserByUsername(String username) {
         return usersRepository.findByUsername(username);
     }

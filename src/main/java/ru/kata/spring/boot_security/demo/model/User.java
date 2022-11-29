@@ -12,13 +12,13 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "users"
-//        , uniqueConstraints =
-//        {
-//                @UniqueConstraint(columnNames = "id"),
-//                @UniqueConstraint(columnNames = "login")
-//        }
+@Table(name = "users", uniqueConstraints =
+        {
+                @UniqueConstraint(columnNames = "id"),
+                @UniqueConstraint(columnNames = "login")
+        }
 )
+@UniqLogin(message = "Пользователь с таким логином уже зарегистрирован в системе")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
