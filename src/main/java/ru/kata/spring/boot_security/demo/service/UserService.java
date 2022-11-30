@@ -14,4 +14,5 @@ public interface UserService {
     List<Role> getAllRoles();
     User getUserById(long id);
     Optional<User> getUserByUsername(String username);
+
 }
