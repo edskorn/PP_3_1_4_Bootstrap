@@ -1,9 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.repositories.RoleDao;
 import ru.kata.spring.boot_security.demo.repositories.UserDao;
-import ru.kata.spring.boot_security.demo.security.PersonDetails;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao usersRepository;
     private final RoleDao rolesRepository;
-    private PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserServiceImpl(UserDao usersRepository, RoleDao rolesRepository) {
@@ -31,9 +27,9 @@ public class UserServiceImpl implements UserService {
         this.rolesRepository = rolesRepository;
     }
 
-    @Bean
-    public PasswordEncoder bCryptPasswordEncoder(){
-        return new BCryptPasswordEncoder();
+    @Autowired
+    public void setbCryptPasswordEncoder(PasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Transactional
@@ -69,18 +65,8 @@ public class UserServiceImpl implements UserService {
         return user.get();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = usersRepository.findByUsername(username);
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException("Пользователь с таким именем не найден");
-        }
-        return new PersonDetails(user.get());
-    }
-
     @Transactional
     public Optional<User> getUserByUsername(String username) {
         return usersRepository.findByUsername(username);
     }
-
 }
