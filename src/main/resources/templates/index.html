@@ -14,6 +14,7 @@
 
 <div class="container-fluid p-0 m-0">
     <div class="row pt-0 pb-0 m-0">
+        <!-- Navbar -->
         <div class="col-md-12 p-0 m-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
                 <span class="navbar-brand "><b>admin@mail.ru</b> with roles: ADMIN USER</span>
@@ -28,14 +29,17 @@
         </div>
     </div>
     <div class="row pt-0 pb-0 m-0 vh-100">
+        <!-- Left menu -->
         <div class="col-2 pr-0 pl-0 pt-3 m-0">
             <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-admin-list" data-toggle="list" href="#list-admin" role="tab" aria-controls="admin">Admin</a>
                 <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="user">User</a>
             </div>
         </div>
+        <!-- Main -->
         <div class="col-10 bg-light p-4 m-0 h-100">
             <div class="tab-content" id="nav-tabContent">
+                <!-- ADMIN -->
                 <div class="tab-pane fade show active" id="list-admin" role="tabpanel" aria-labelledby="list-admin-list">
                     <H1>Admin panel</H1>
                     <div class="tabbable" id="tabs-972471">
@@ -48,6 +52,7 @@
                             </li>
                         </ul>
                         <div class="tab-content">
+                            <!-- Users table -->
                             <div class="tab-pane active" id="tab1">
                                 <div class="card">
                                     <div class="card-header">
@@ -75,8 +80,16 @@
                                                 <td>27</td>
                                                 <td>mark@mail.ru</td>
                                                 <td>ADMIN USER</td>
-                                                <td><button type="button" class="btn btn-info">Edit</button></td>
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit-user-1">
+                                                        Edit
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-1">
+                                                        Delete
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
@@ -86,7 +99,11 @@
                                                 <td>thornton@gmail.com</td>
                                                 <td>USER</td>
                                                 <td><button type="button" class="btn btn-info">Edit</button></td>
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-2">
+                                                        Delete
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>7</td>
@@ -96,13 +113,18 @@
                                                 <td>tcruse@gmail.com</td>
                                                 <td>USER</td>
                                                 <td><button type="button" class="btn btn-info">Edit</button></td>
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-7">
+                                                        Delete
+                                                    </button>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                            <!-- New user -->
                             <div class="tab-pane" id="tab2">
                                 <div class="card">
                                     <div class="card-header">
@@ -151,6 +173,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- USER -->
                 <div class="tab-pane fade" id="list-user" role="tabpanel" aria-labelledby="list-user-list">
                     <H1>User information-page</H1>
                     <div class="card">
@@ -199,6 +222,124 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="delete-user-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete-user-1-label">Delete user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="container-fluid p-0 m-0">
+                    <div class="row d-flex justify-content-center pt-0 pb-0 m-0">
+                        <div class="col-md-6 p-0 m-0">
+                            <form>
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <label for="user-1-delete-id" class="mb-0"><b>ID</b></label>
+                                        <input type="text" class="form-control" id="user-1-delete-id" placeholder="ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-delete-first-name" class="mb-0"><b>First name</b></label>
+                                        <input type="text" class="form-control" id="user-1-delete-first-name" placeholder="First name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-delete-last-name" class="mb-0"><b>Last name</b></label>
+                                        <input type="text" class="form-control" id="user-1-delete-last-name" placeholder="Last name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-delete-age" class="mb-0"><b>Age</b></label>
+                                        <input type="number" class="form-control" id="user-1-delete-age" placeholder="Age">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-delete-email" class="mb-0"><b>Email</b></label>
+                                        <input type="email" class="form-control" id="user-1-delete-email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-delete-roles" class="mb-0"><b>Role</b></label>
+                                        <select multiple class="form-control" size="2" style="height: 100%;" id="user-1-delete-roles">
+                                            <option>ADMIN</option>
+                                            <option>USER</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="edit-user-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-user-1-label">Edit user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="container-fluid p-0 m-0">
+                    <div class="row d-flex justify-content-center pt-0 pb-0 m-0">
+                        <div class="col-md-6 p-0 m-0">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-id" class="mb-0"><b>ID</b></label>
+                                        <input readonly type="text" class="form-control" id="user-1-edit-id" placeholder="ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-first-name" class="mb-0"><b>First name</b></label>
+                                        <input type="text" class="form-control" id="user-1-edit-first-name" placeholder="First name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-last-name" class="mb-0"><b>Last name</b></label>
+                                        <input type="text" class="form-control" id="user-1-edit-last-name" placeholder="Last name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-age" class="mb-0"><b>Age</b></label>
+                                        <input type="number" class="form-control" id="user-1-edit-age" placeholder="Age">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-email" class="mb-0"><b>Email</b></label>
+                                        <input type="email" class="form-control" id="user-1-edit-email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-password" class="mb-0"><b>Password</b></label>
+                                        <input type="email" class="form-control" id="user-1-edit-password" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-1-edit-roles" class="mb-0"><b>Role</b></label>
+                                        <select multiple class="form-control" size="2" style="height: 100%;" id="user-1-edit-roles">
+                                            <option>ADMIN</option>
+                                            <option>USER</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Edit</button>
             </div>
         </div>
     </div>
