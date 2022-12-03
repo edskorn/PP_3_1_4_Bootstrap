@@ -1,11 +1,215 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
 
+<div class="container-fluid p-0 m-0">
+    <div class="row pt-0 pb-0 m-0">
+        <div class="col-md-12 p-0 m-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
+                <span class="navbar-brand "><b>admin@mail.ru</b> with roles: ADMIN USER</span>
+                <div class="collapse navbar-collapse pt-1 pb-1" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                    </ul>
+                    <div class="navbar-text ">
+                        <a class="text-white-50 p-0" href="@{/logout}">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row pt-0 pb-0 m-0 vh-100">
+        <div class="col-2 pr-0 pl-0 pt-3 m-0">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-admin-list" data-toggle="list" href="#list-admin" role="tab" aria-controls="admin">Admin</a>
+                <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="user">User</a>
+            </div>
+        </div>
+        <div class="col-10 bg-light p-4 m-0 h-100">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-admin" role="tabpanel" aria-labelledby="list-admin-list">
+                    <H1>Admin panel</H1>
+                    <div class="tabbable" id="tabs-972471">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active show" href="#tab1" data-toggle="tab">Users table</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tab2" data-toggle="tab">New User</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <b>All users</b>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Last Name</th>
+                                                <th scope="col">Age</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Edit</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>27</td>
+                                                <td>mark@mail.ru</td>
+                                                <td>ADMIN USER</td>
+                                                <td><button type="button" class="btn btn-info">Edit</button></td>
+                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>32</td>
+                                                <td>thornton@gmail.com</td>
+                                                <td>USER</td>
+                                                <td><button type="button" class="btn btn-info">Edit</button></td>
+                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>Tom</td>
+                                                <td>Cruse</td>
+                                                <td>45</td>
+                                                <td>tcruse@gmail.com</td>
+                                                <td>USER</td>
+                                                <td><button type="button" class="btn btn-info">Edit</button></td>
+                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <b>Add new user</b>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="container-fluid p-0 m-0">
+                                            <div class="row d-flex justify-content-center pt-0 pb-0 m-0">
+                                                <div class="col-md-4 p-0 m-0">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="input-first-name" class="mb-0"><b>First name</b></label>
+                                                            <input type="text" class="form-control" id="input-first-name" placeholder="First name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="input-last-name" class="mb-0"><b>Last name</b></label>
+                                                            <input type="text" class="form-control" id="input-last-name" placeholder="Last name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="input-age" class="mb-0"><b>Age</b></label>
+                                                            <input type="number" class="form-control" id="input-age" placeholder="Age">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="input-email" class="mb-0"><b>Email</b></label>
+                                                            <input type="email" class="form-control" id="input-email" placeholder="Email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="input-password" class="mb-0"><b>Password</b></label>
+                                                            <input type="password" class="form-control" id="input-password" placeholder="Password">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="select-roles" class="mb-0"><b>Role</b></label>
+                                                            <select multiple class="form-control" size="2" style="height: 100%;" id="select-roles">
+                                                                <option>ADMIN</option>
+                                                                <option>USER</option>
+                                                            </select>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success">Add new user</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="list-user" role="tabpanel" aria-labelledby="list-user-list">
+                    <H1>User information-page</H1>
+                    <div class="card">
+                        <div class="card-header">
+                            <b>About user</b>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>27</td>
+                                    <td>mark@mail.ru</td>
+                                    <td>ADMIN USER</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>32</td>
+                                    <td>thornton@gmail.com</td>
+                                    <td>USER</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Tom</td>
+                                    <td>Cruse</td>
+                                    <td>45</td>
+                                    <td>tcruse@gmail.com</td>
+                                    <td>USER</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>
