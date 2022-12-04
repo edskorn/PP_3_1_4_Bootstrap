@@ -20,7 +20,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-0 pb-0">
                 <span class="navbar-brand font-weight-bold mr-1" sec:authentication="name">admin@mail.ru</span>
                 <span class="navbar-brand mr-1">with roles:</span>
-                <span class="navbar-brand" sec:authentication="principal.authorities">ADMIN USER</span>
+                <span class="navbar-brand" th:text="${currentUser.getRolesToString()}">ADMIN USER</span>
                 <div class="collapse navbar-collapse pt-1 pb-1" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                     </ul>
@@ -80,12 +80,12 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="user : ${allUsers}">
-                                                <td th:text="${user.id}">2</td>
-                                                <td th:text="${user.name}">Jacob</td>
-                                                <td th:text="${user.lastName}">Thornton</td>
-                                                <td th:text="${user.age}">32</td>
-                                                <td th:text="${user.username}">thornton@gmail.com</td>
-                                                <td th:text="${user.roles}">USER</td>
+                                                <td th:text="${user.id}">id</td>
+                                                <td th:text="${user.name}">name</td>
+                                                <td th:text="${user.lastName}">lastName</td>
+                                                <td th:text="${user.age}">age</td>
+                                                <td th:text="${user.username}">email</td>
+                                                <td th:text="${user.getRolesToString()}">ROLE</td>
                                                 <td>
                                                     <button type="button" class="btn btn-info" data-toggle="modal" th:data-target="'#edit-user-'+${user.id}">
                                                         Edit
@@ -135,9 +135,11 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="select-roles" class="mb-0"><b>Role</b></label>
-                                                            <select multiple class="form-control" size="2" style="height: 100%;" id="select-roles">
-                                                                <option>ADMIN</option>
-                                                                <option>USER</option>
+                                                            <select multiple class="form-control" th:size="${allRoles.size()}" style="height: 100%;" id="select-roles" name="roles" th:field="*{roles}">
+                                                                <option th:each="role : ${allRoles}"
+                                                                        th:text="${role.name}"
+                                                                        th:value="${role.id}"
+                                                                        ></option>
                                                             </select>
                                                         </div>
                                                         <button type="submit" class="btn btn-success">Add new user</button>
@@ -173,12 +175,12 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td th:text="${currentUser.id}">1</td>
-                                    <td th:text="${currentUser.name}">Mark</td>
-                                    <td th:text="${currentUser.lastName}">Otto</td>
-                                    <td th:text="${currentUser.age}">27</td>
-                                    <td th:text="${currentUser.username}">mark@mail.ru</td>
-                                    <td th:text="${currentUser.roles}">ADMIN USER</td>
+                                    <td th:text="${currentUser.id}">id</td>
+                                    <td th:text="${currentUser.name}">name</td>
+                                    <td th:text="${currentUser.lastName}">lastname</td>
+                                    <td th:text="${currentUser.age}">age</td>
+                                    <td th:text="${currentUser.username}">email</td>
+                                    <td th:text="${currentUser.getRolesToString()}">ROLE</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -227,10 +229,12 @@
                                         <input type="email" class="form-control" th:id="'delete-user-'+${user.id}+'-email'" th:placeholder="${user.username}">
                                     </div>
                                     <div class="form-group">
-                                        <label th:for="'delete-user-'+${user.id}+'-roles'" class="mb-0"><b>Role</b></label>
-                                        <select multiple class="form-control" size="2" style="height: 100%;" th:id="'delete-user-'+${user.id}+'-roles'">
-                                            <option>ADMIN</option>
-                                            <option>USER</option>
+                                        <label for="delete-roles" class="mb-0"><b>Role</b></label>
+                                        <select multiple class="form-control" th:size="${allRoles.size()}" style="height: 100%;" id="delete-roles" name="roles">
+                                            <option th:each="role : ${allRoles}"
+                                                    th:text="${role.name}"
+                                                    th:value="${role.id}"
+                                            ></option>
                                         </select>
                                     </div>
                                 </fieldset>
@@ -288,10 +292,12 @@
                                         <input type="password" class="form-control" name="password" th:id="'edit-user-'+${user.id}+'-password'" placeholder="Password">
                                     </div>
                                     <div class="form-group">
-                                        <label th:for="'edit-user-'+${user.id}+'-roles'" class="mb-0"><b>Role</b></label>
-                                        <select multiple class="form-control" size="2" style="height: 100%;" th:id="'edit-user-'+${user.id}+'-roles'">
-                                            <option>ADMIN</option>
-                                            <option>USER</option>
+                                        <label for="edit-roles" class="mb-0"><b>Role</b></label>
+                                        <select multiple class="form-control" th:size="${allRoles.size()}" style="height: 100%;" id="edit-roles" name="roles" th:field="*{roles}">
+                                            <option th:each="role : ${allRoles}"
+                                                    th:text="${role.name}"
+                                                    th:value="${role.id}"
+                                            ></option>
                                         </select>
                                     </div>
                                 </fieldset>

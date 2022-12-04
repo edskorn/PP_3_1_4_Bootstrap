@@ -49,11 +49,17 @@ public class UserController {
 	@RequestMapping(value = "/admin")
 	public String showAll(ModelMap model) {
 		List<User> users = userService.getAllUsers();
+		//List<User> users = Collections.singletonList(userService.getUserById(1L));
 		model.addAttribute("allUsers", users);
+
+		List<Role> roles = userService.getAllRoles();
+		model.addAttribute("allRoles", roles);
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = ((PersonDetails) authentication.getPrincipal()).getUser();
 		model.addAttribute("currentUser", user);
+
+		model.addAttribute("user", new User());
 
 		model.addAttribute("newUser", new User());
 

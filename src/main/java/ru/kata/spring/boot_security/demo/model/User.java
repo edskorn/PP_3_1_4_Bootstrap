@@ -110,6 +110,11 @@ public class User {
         return roles;
     }
 
+    public String getRolesToString() {
+        return roles.stream().map(role -> role.toString()).map(s -> s.contains("ROLE_") ? s.substring(5) : s)
+                .reduce("", (a, b) -> a + " " + b);
+    }
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
