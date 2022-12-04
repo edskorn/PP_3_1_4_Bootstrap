@@ -111,7 +111,7 @@ public class User {
     }
 
     public String getRolesToString() {
-        return roles.stream().map(role -> role.toString()).map(s -> s.contains("ROLE_") ? s.substring(5) : s)
+        return roles.stream().map(Role::toString).map(s -> s.contains("ROLE_") ? s.substring(5) : s)
                 .reduce("", (a, b) -> a + " " + b);
     }
 
