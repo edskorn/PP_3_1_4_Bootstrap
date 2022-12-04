@@ -55,6 +55,8 @@ public class UserController {
 		User user = ((PersonDetails) authentication.getPrincipal()).getUser();
 		model.addAttribute("currentUser", user);
 
+		model.addAttribute("newUser", new User());
+
 		return "index";
 	}
 
@@ -69,13 +71,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/saveUser")
-	public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result, ModelMap model){
+	public String saveUser(@Valid @ModelAttribute("newUser") User user, BindingResult result, ModelMap model){
 		List<Role> roles = userService.getAllRoles();
 		model.addAttribute("allRoles", roles);
 
-		if (result.hasErrors()) {
-			return "add-user";
-		}
+//		if (result.hasErrors()) {
+//			return "add-user";
+//		}
 //		try {
 			userService.saveUser(user);
 //		} catch (Exception e) {
@@ -85,15 +87,10 @@ public class UserController {
 //		}
 		return "redirect:/admin";
 	}
-
 	@RequestMapping(value = "/updateUser")
-	public String updateUser(@RequestParam("userId") int userId, ModelMap model){
-		model.addAttribute("user", userService.getUserById(userId));
-
-		List<Role> roles = userService.getAllRoles();
-		model.addAttribute("allRoles", roles);
-
-		return "add-user";
+	public String updateUser(@ModelAttribute("user") User user, ModelMap model){
+		userService.saveUser(user);
+		return "redirect:/admin";
 	}
 
 	@RequestMapping(value = "/deleteUser")

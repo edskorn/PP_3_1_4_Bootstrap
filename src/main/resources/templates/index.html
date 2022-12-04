@@ -112,26 +112,26 @@
                                         <div class="container-fluid p-0 m-0">
                                             <div class="row d-flex justify-content-center pt-0 pb-0 m-0">
                                                 <div class="col-md-4 p-0 m-0">
-                                                    <form>
+                                                    <form th:action="@{/saveUser}" th:object="${newUser}">
                                                         <div class="form-group">
                                                             <label for="input-first-name" class="mb-0"><b>First name</b></label>
-                                                            <input type="text" class="form-control" id="input-first-name" placeholder="First name">
+                                                            <input type="text" class="form-control" id="input-first-name" name="name" placeholder="First name" th:value="${newUser.name}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="input-last-name" class="mb-0"><b>Last name</b></label>
-                                                            <input type="text" class="form-control" id="input-last-name" placeholder="Last name">
+                                                            <input type="text" class="form-control" id="input-last-name" name="lastName" placeholder="Last name" th:value="${newUser.lastName}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="input-age" class="mb-0"><b>Age</b></label>
-                                                            <input type="number" class="form-control" id="input-age" placeholder="Age">
+                                                            <input type="number" class="form-control" id="input-age" name="age" placeholder="Age" th:value="${newUser.age}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="input-email" class="mb-0"><b>Email</b></label>
-                                                            <input type="email" class="form-control" id="input-email" placeholder="Email">
+                                                            <input type="email" class="form-control" id="input-email" name="username" placeholder="Email" th:value="${newUser.username}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="input-password" class="mb-0"><b>Password</b></label>
-                                                            <input type="password" class="form-control" id="input-password" placeholder="Password">
+                                                            <input type="password" class="form-control" id="input-password" name="password" placeholder="Password">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="select-roles" class="mb-0"><b>Role</b></label>
@@ -240,8 +240,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a class="btn btn-danger" th:href="@{/deleteUser(userId=${user.getId()})}">Delete</a>
             </div>
         </div>
     </div>
@@ -261,31 +261,31 @@
                 <div class="container-fluid p-0 m-0">
                     <div class="row d-flex justify-content-center pt-0 pb-0 m-0">
                         <div class="col-md-6 p-0 m-0">
-                            <form>
+                            <form th:id="'edit-user-'+${user.id}+'-form'" th:action="@{/updateUser}" th:object="${user}">
                                 <fieldset>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-id'" class="mb-0"><b>ID</b></label>
-                                        <input readonly type="text" class="form-control" th:id="'edit-user-'+${user.id}+'-id'" th:value="${user.id}" th:placeholder="ID">
+                                        <input readonly type="text" class="form-control" name="id" th:id="'edit-user-'+${user.id}+'-id'" th:value="${user.id}" th:placeholder="ID">
                                     </div>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-name'" class="mb-0"><b>First name</b></label>
-                                        <input type="text" class="form-control" th:id="'edit-user-'+${user.id}+'-name'" th:value="${user.name}" placeholder="First name">
+                                        <input type="text" class="form-control" name="name" th:id="'edit-user-'+${user.id}+'-name'" th:value="${user.name}" placeholder="First name">
                                     </div>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-last-name'" class="mb-0"><b>Last name</b></label>
-                                        <input type="text" class="form-control" th:id="'edit-user-'+${user.id}+'-last-name'" th:value="${user.lastName}" placeholder="Last name">
+                                        <input type="text" class="form-control" name="lastName" th:id="'edit-user-'+${user.id}+'-last-name'" th:value="${user.lastName}" placeholder="Last name">
                                     </div>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-age'" class="mb-0"><b>Age</b></label>
-                                        <input type="number" class="form-control" th:id="'edit-user-'+${user.id}+'-age'" th:value="${user.age}" placeholder="Age">
+                                        <input type="number" class="form-control" name="age" th:id="'edit-user-'+${user.id}+'-age'" th:value="${user.age}" placeholder="Age">
                                     </div>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-email'" class="mb-0"><b>Email</b></label>
-                                        <input type="email" class="form-control" th:id="'edit-user-'+${user.id}+'-email'" th:value="${user.username}" placeholder="Email">
+                                        <input type="email" class="form-control" name="username" th:id="'edit-user-'+${user.id}+'-email'" th:value="${user.username}" placeholder="Email">
                                     </div>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-password'" class="mb-0"><b>Password</b></label>
-                                        <input type="password" class="form-control" th:id="'edit-user-'+${user.id}+'-password'" placeholder="Password">
+                                        <input type="password" class="form-control" name="password" th:id="'edit-user-'+${user.id}+'-password'" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <label th:for="'edit-user-'+${user.id}+'-roles'" class="mb-0"><b>Role</b></label>
@@ -302,7 +302,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button th:form="'edit-user-'+${user.id}+'-form'" type="submit" class="btn btn-primary">Edit</button>
             </div>
         </div>
     </div>

@@ -44,7 +44,7 @@ public class User {
 
     @Column(name = "login", unique = true)
     @NotEmpty(message = "Логин должен быть заполнен")
-    @Pattern(regexp = "[A-Za-z0-9_]+", message = "Логин может состоять из букв латинского алфавита, цифр и символа подчёркивания")
+    @Pattern(regexp = "[A-Za-z0-9_@.]+", message = "Логин может состоять из букв латинского алфавита, цифр и символа подчёркивания")
     @Size(min=3, max=20, message = "Не меньше 3 и не больше 20-ти знаков")
     //@UniqLogin(message = "Пользователь с таким логином уже зарегистрирован в системе")
     private String username;
