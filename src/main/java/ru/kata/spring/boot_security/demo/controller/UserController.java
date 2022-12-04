@@ -50,7 +50,12 @@ public class UserController {
 	public String showAll(ModelMap model) {
 		List<User> users = userService.getAllUsers();
 		model.addAttribute("allUsers", users);
-		return "all-users";
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = ((PersonDetails) authentication.getPrincipal()).getUser();
+		model.addAttribute("currentUser", user);
+
+		return "index";
 	}
 
 	@RequestMapping(value = "/addUser")
@@ -101,8 +106,8 @@ public class UserController {
 	public String showUserInfo(ModelMap model){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = ((PersonDetails) authentication.getPrincipal()).getUser();
-		model.addAttribute("user", user);
-		return "user-info";
+		model.addAttribute("currentUser", user);
+		return "index";
 	}
 
 //	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
