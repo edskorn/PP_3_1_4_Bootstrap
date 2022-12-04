@@ -46,6 +46,12 @@ public class UserController {
 	public String printWelcome() {
 		return "index";
 	}
+
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+
 	@RequestMapping(value = "/admin")
 	public String showAll(ModelMap model) {
 		List<User> users = userService.getAllUsers();
