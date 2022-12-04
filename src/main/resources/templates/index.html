@@ -24,9 +24,9 @@
                 <div class="collapse navbar-collapse pt-1 pb-1" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                     </ul>
-                    <div class="navbar-text ">
-                        <a class="text-white-50 p-0" th:href="@{/logout}">Logout</a>
-                    </div>
+                    <form th:action="@{/logout}" method="post">
+                        <input class="text-white-50 border-0 bg-dark m-0" type="submit" value="Logout" />
+                    </form>
                 </div>
             </nav>
         </div>
